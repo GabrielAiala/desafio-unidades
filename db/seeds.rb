@@ -12,15 +12,21 @@ locations_data = [
     "schedules": [
       {
         "weekdays": "Seg. à Sex.",
-        "hour": "06h às 22h"
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Sáb.",
-        "hour": ["Fechada", "08h às 18h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Dom.",
-        "hour": ["Fechada", "09h às 17h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       }
     ]
   },
@@ -35,15 +41,21 @@ locations_data = [
     "schedules": [
       {
         "weekdays": "Seg. à Sex.",
-        "hour": "07h às 23h"
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Sáb.",
-        "hour": ["Fechada", "09h às 19h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Dom.",
-        "hour": ["Fechada", "10h às 18h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       }
     ]
   },
@@ -58,15 +70,21 @@ locations_data = [
     "schedules": [
       {
         "weekdays": "Seg. à Sex.",
-        "hour": "08h às 20h"
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Sáb.",
-        "hour": ["Fechada", "10h às 16h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       },
       {
         "weekdays": "Dom.",
-        "hour": ["Fechada", "11h às 15h"].sample
+        "abertura": 6,
+        "fechamento": 23,
+        "fechado": false
       }
     ]
   }
@@ -87,7 +105,9 @@ locations_data.each do |unit_data|
     Schedule.create(
       unit: Unit.last,
       weekdays: schedule_data[:weekdays],
-      hour: schedule_data[:hour]
+      abertura: schedule_data[:abertura],
+      fechamento: schedule_data[:fechamento],
+      fechado: schedule_data[:fechado]
     )
   end
 end

@@ -73,3 +73,7 @@ group :test do
   gem "factory_bot", "~> 6.3"
   gem "rspec-rails", "~> 5.0"
 end
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem 'jquery-rails'

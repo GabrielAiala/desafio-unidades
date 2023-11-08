@@ -23,7 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_155624) do
 
   create_table "schedules", force: :cascade do |t|
     t.string "weekdays"
-    t.string "hour"
+    t.integer "abertura"
+    t.integer "fechamento"
+    t.boolean "fechado", default: false
     t.bigint "unit_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -4,13 +4,20 @@ class Api::UnitsController < ApiController
   end
 
   def create
-    @unit = Unit.new(create_unit_params)
+    @unit = Unit.new(create_unit_params.except(:schedules_attributes))
 
     if @unit.save
       schedule_params = create_unit_params[:schedules_attributes]
 
       schedule_params.each do |schedule|
-        @unit.schedules.create(weekdays: schedule[:weekdays], hour: schedule[:hour])
+        fechado = false
+        if schedule[:hour] == 'Fechado'
+          fechado = true
+        else
+          abertura = schedule[:hour].split(' às ')[0].to_i
+          fechamento = schedule[:hour].split(' às ')[1].to_i
+        end
+        @unit.schedules.create(weekdays: schedule[:weekdays], abertura: abertura, fechamento: fechamento, fechado: fechado)
       end
 
       render :create, status: :created
@@ -27,16 +34,23 @@ class Api::UnitsController < ApiController
   def update
     @unit = Unit.find(params[:id])
 
-    if @unit.update(update_unit_params)
+    if @unit.update(update_unit_params.except(:schedules_attributes)
       schedule_params = update_unit_params[:schedules_attributes]
 
       schedule_params.each do |schedule|
+        if schedule[:hour] == 'Fechado'
+          fechado = true
+        else
+          abertura = schedule[:hour].split(' às ')[0].to_i
+          fechamento = schedule[:hour].split(' às ')[1].to_i
+        end
+
         if schedule[:id]
-          @unit.schedules.find(schedule[:id]).update(weekdays: schedule[:weekdays], hour: schedule[:hour])
+          @unit.schedules.find(schedule[:id]).update(weekdays: schedule[:weekdays], abertura: abertura, fechamento: fechamento, fechado: fechado)
         elsif schedule[:_destroy]
           @unit.schedules.find(schedule[:id]).destroy
         else
-          @unit.schedules.create(weekdays: schedule[:weekdays], hour: schedule[:hour])
+          @unit.schedules.create(weekdays: schedule[:weekdays], abertura: abertura, fechamento: fechamento, fechado: fechado)
         end
       end
       render :update, status: :accepted

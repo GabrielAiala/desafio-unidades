@@ -1,0 +1,52 @@
+<%= form_tag(units_path, method: "get", class: "mx-auto mt-16 max-w-xl sm:mt-20 ring-1 ring-gray-100 rounded-md p-3") do %>
+  <h1 class="text-2xl font-semibold text-gray-900">Encontre uma unidade</h1>
+  <h2 class="text-sm font-semibold text-gray-500">Qual período quer treinar</h2>
+
+  <div>
+    <div class="mt-6 space-y-6">
+      <div class="flex flex-row items-center">
+        <%= check_box_tag("period[]", "manha", false, class: "mr-3 h-4 w-4 rounded border-gray-300") %>
+        <div class="flex flex-row items-center justify-between w-full">
+          <p>Manhã</p>
+          <p class="text-sm text-gray-500">das 6h às 12h</p>
+        </div>
+      </div>
+
+      <div class="flex flex-row items-center">
+        <%= check_box_tag("period[]", "tarde", false, class: "mr-3 h-4 w-4 rounded border-gray-300") %>
+        <div class="flex flex-row items-center justify-between w-full">
+          <p>Tarde</p>
+          <p class="text-sm text-gray-500">das 12h às 18h</p>
+        </div>
+      </div>
+
+      <div class="flex flex-row items-center">
+        <%= check_box_tag("period[]", "noite", false, class: "mr-3 h-4 w-4 rounded border-gray-300") %>
+        <div class="flex flex-row items-center justify-between w-full">
+          <p>Noite</p>
+          <p class="text-sm text-gray-500">das 18h às 23h</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex gap-x-4 mt-2 items-center">
+      <%= check_box_tag("show_closed_units", 'true', false, class: "bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900") %>
+      <p> Exibir unidades fechadas</p>
+    </div>
+  </div>
+
+
+  <div class="flex flex-row gap-1 mt-2">
+    <%= submit_tag("ENCONTRAR UNIDADE", class: "w-full rounded-md bg-amber-400 px-3 py-2 text-center text-sm font-semibold text-white") %>
+    <%= button_tag("LIMPAR", type: "reset", class: "w-full rounded-md bg-white px-3 py-2 text-center text-sm font-semibold text-black ring-inset ring-gray-300 ring-1") %>
+  </div>
+<% end %>
+<div class="mx-auto mt-16 max-w-xl sm:mt-20 ">
+    <div id="units">
+    <%= render partial: 'units', locals: { units: @units } %>
+  </div>
+
+</div>
+
+
