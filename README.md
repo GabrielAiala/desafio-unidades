@@ -1,24 +1,26 @@
-# README
+# Teste técnico - CRUD e Busca por unidades abertas ou fechadas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instalação
 
-Things you may want to cover:
+```
+docker compose build
 
-* Ruby version
+docker compose up
+```
 
-* System dependencies
+## rodar as seeds
 
-* Configuration
+```
+docker exec web sh
 
-* Database creation
+rails db:seed
 
-* Database initialization
+```
 
-* How to run the test suite
+## rodar os testes
 
-* Services (job queues, cache servers, search engines, etc.)
+```
 
-* Deployment instructions
+bundle exec rspec .
 
-* ...
+```
