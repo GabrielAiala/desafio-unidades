@@ -5,7 +5,6 @@ class Unit < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
-  validates :opened, presence: true
   validates :mask, presence: true
   validates :towel, presence: true
   validates :fountain, presence: true

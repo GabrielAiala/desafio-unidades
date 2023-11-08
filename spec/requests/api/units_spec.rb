@@ -29,11 +29,11 @@ RSpec.describe Api::UnitsController, type: :controller do
         schedules_attributes: [
           {
             weekdays: "monday",
-            hour: "10:00"
+            hour: "10h às 19h"
           },
           {
             weekdays: "tuesday",
-            hour: "10:00"
+            hour: "10h às 19h"
           }
         ]
       }
@@ -54,7 +54,7 @@ RSpec.describe Api::UnitsController, type: :controller do
       put :update, params: {
         id: unit.id,
         unit: {
-          title: "new title",
+          title: "title",
           content: "content",
           opened: true,
           mask: "recommended",
@@ -63,10 +63,13 @@ RSpec.describe Api::UnitsController, type: :controller do
           locker_room: "allowed",
           schedules_attributes: [
             {
-              id: unit.schedules.first.id,
               weekdays: "monday",
-              hour: "10:00"
+              hour: "10h às 19h"
             },
+            {
+              weekdays: "tuesday",
+              hour: "10h às 19h"
+            }
           ]
         }
       }, as: :json

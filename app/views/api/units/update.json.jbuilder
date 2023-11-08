@@ -8,6 +8,10 @@ json.unit do
   json.locker_room @unit.locker_room
   json.schedules @unit.schedules do |schedule|
     json.weekdays schedule.weekdays
-    json.hour schedule.hour
+    if schedule.fechado
+      json.hour 'Fechado'
+    else 
+      json.hour "#{schedule.abertura}h às #{schedule.fechamento}h"
+    end
   end
 end

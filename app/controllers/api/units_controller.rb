@@ -34,7 +34,7 @@ class Api::UnitsController < ApiController
   def update
     @unit = Unit.find(params[:id])
 
-    if @unit.update(update_unit_params.except(:schedules_attributes)
+    if @unit.update(update_unit_params.except(:schedules_attributes))
       schedule_params = update_unit_params[:schedules_attributes]
 
       schedule_params.each do |schedule|
